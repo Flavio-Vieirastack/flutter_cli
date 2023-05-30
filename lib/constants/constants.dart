@@ -217,10 +217,10 @@ import '$datasourcePath';
 
 final class $datasourceImplFileName
     implements $datasourceInterfaceFileName {
-  final RestClientGet _restClientGet;
+  final DioRestClient _dioRestClient;
 
-  $datasourceImplFileName({required RestClientGet restClientGet,})
-      : _restClientGet = restClientGet;
+  $datasourceImplFileName({required DioRestClient dioRestClient,})
+      : _dioRestClient = dioRestClient;
 
 }
 ''';
@@ -311,10 +311,9 @@ part '${featureNameInCamelCase}_state.dart';
 class ${capitalizedFeatureName}Bloc extends FlutterGetItBloc<${capitalizedFeatureName}State> {
   final ${capitalizedFeatureName}Usecase _${usecaseVariableName}Usecase;
 
-  ${capitalizedFeatureName}Cubit({
+  ${capitalizedFeatureName}Bloc({
     required ${capitalizedFeatureName}Usecase ${usecaseVariableName}Usecase,
-  })  : _${usecaseVariableName}Usecase = ${usecaseVariableName}Usecase,
-        super(${capitalizedFeatureName}Initial());
+  })  : _${usecaseVariableName}Usecase = ${usecaseVariableName}Usecase;
 
 }
 ''';
@@ -377,6 +376,7 @@ class ${capitalizedFeatureName}Module extends FlutterGetItPageRoute {
 
   @override
   WidgetBuilder get page => (context) => const ${capitalizedFeatureName}Page();
+  }
 ''';
   }
 }

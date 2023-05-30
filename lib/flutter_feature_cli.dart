@@ -10,12 +10,13 @@ import 'helper/whrite_files.dart';
 void main(List<String> args) {
   final entityAndModelNames = <String>{};
   final currentDir = Directory.current;
-  final finalDir = p.join(
-    currentDir.path,
-    'lib',
-    'src',
-    'features',
-  );
+  final finalDir = '${currentDir.path}/src/features';
+  // final finalDir = p.join(
+  //   currentDir.path,
+  //   'lib',
+  //   'src',
+  //   'features',
+  // );
   print('🚀 Type your feature name 🚀');
   final featureNameRaw = stdin.readLineSync();
   final featureName =
@@ -41,7 +42,7 @@ void main(List<String> args) {
   final pathToEntity = '$finalDir/$featureName/domain/entity';
   final pathToModel = '$finalDir/$featureName/data/model';
   final pathToPage = '$finalDir/$featureName/presenter/pages';
-  final pathToCubit = '$finalDir/$featureName/presenter/cubits';
+  final pathToCubit = '$finalDir/$featureName/presenter/bloc';
   final pathToError = '$finalDir/$featureName/domain/errors';
   final pathToModule = '$finalDir/$featureName/presenter/module';
   final testDir = finalDir.replaceAll('/lib', '/test');
@@ -142,7 +143,11 @@ void main(List<String> args) {
       runInShell: true,
     );
     await run(
-      "$mkdir $finalDir/$featureName/presenter/cubits",
+      "$mkdir $finalDir/$featureName/presenter/module",
+      runInShell: true,
+    );
+    await run(
+      "$mkdir $finalDir/$featureName/presenter/bloc",
       runInShell: true,
     );
     await run(

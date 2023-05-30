@@ -10,7 +10,7 @@ class CubitWriter {
     required String featureName,
     required String capitalizedFeatureName,
   }) {
-    final cubitFile = File('$path/${featureNameInCamelCase}_cubit.dart');
+    final cubitFile = File('$path/${featureNameInCamelCase}_bloc.dart');
     final stateFile = File('$path/${featureNameInCamelCase}_state.dart');
     cubitFile.writeAsString(
       Constants.cubit(
