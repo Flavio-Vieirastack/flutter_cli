@@ -10,13 +10,13 @@ import 'helper/whrite_files.dart';
 void main(List<String> args) {
   final entityAndModelNames = <String>{};
   final currentDir = Directory.current;
-  final finalDir = '${currentDir.path}/src/features';
-  // final finalDir = p.join(
-  //   currentDir.path,
-  //   'lib',
-  //   'src',
-  //   'features',
-  // );
+  //final finalDir = '${currentDir.path}/src/features';
+  final finalDir = p.join(
+    currentDir.path,
+    'lib',
+    'src',
+    'features',
+  );
   print('🚀 Type your feature name 🚀');
   final featureNameRaw = stdin.readLineSync();
   final featureName =
