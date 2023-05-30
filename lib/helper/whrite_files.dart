@@ -1,6 +1,6 @@
 import 'package:basic_utils/basic_utils.dart';
-String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
-String _invertCapitalize(String s) => s[0].toLowerCase() + s.substring(1);
+String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+String invertCapitalize(String s) => s[0].toLowerCase() + s.substring(1);
 void writeFile({
   required Set<String> data,
   required String path,
@@ -18,7 +18,7 @@ void writeFile({
   bool writeCubit = false,
   bool writeError = false,
 }) {
-  final capitalizedFeatureName = _capitalize(featureNameRaw);
+  final capitalizedFeatureName = capitalize(featureNameRaw);
   final usecaseInterfaceFileName = '${capitalizedFeatureName}Usecase';
   final usecaseImplFileName = '${capitalizedFeatureName}UsecaseImpl';
 
@@ -30,4 +30,7 @@ void writeFile({
   final testDir = finalDir.replaceAll('/lib', '/test');
   final featureNameInCamelCase =
       StringUtils.camelCaseToLowerUnderscore(featureName);
+  if (writeEntity) {
+    
+  }
 }
