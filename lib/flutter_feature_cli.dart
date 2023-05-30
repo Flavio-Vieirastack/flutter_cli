@@ -4,6 +4,8 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:cli_script/cli_script.dart';
 import 'package:path/path.dart' as p;
 
+import 'helper/whrite_files.dart';
+
 // Esse é para criar feature dentro do proprio projeto sem package de logica
 void main(List<String> args) {
   final entityAndModelNames = <String>{};
@@ -41,6 +43,7 @@ void main(List<String> args) {
   final pathToPage = '$finalDir/$featureName/presenter/pages';
   final pathToCubit = '$finalDir/$featureName/presenter/cubits';
   final pathToError = '$finalDir/$featureName/domain/errors';
+  final pathToModule = '$finalDir/$featureName/presenter/module';
   final testDir = finalDir.replaceAll('/lib', '/test');
 
   final mkdir = Platform.isMacOS ? 'mkdir -p' : 'mkdir';
@@ -145,6 +148,73 @@ void main(List<String> args) {
     await run(
       "$mkdir $finalDir/$featureName/domain/entity",
       runInShell: true,
+    ).then((_) {
+      writeFile(
+        data: entityAndModelNames,
+        path: pathToEntity,
+        writeEntity: true,
+        featureName: featureName,
+        finalDir: finalDir,
+        modelPath: pathToModel,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+      writeFile(
+        data: {},
+        path: pathToUsecase,
+        featureName: featureName,
+        writeUsecase: true,
+        finalDir: finalDir,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+      writeFile(
+        data: {},
+        path: pathToRepositoryInterface,
+        featureName: featureName,
+        writeRepository: true,
+        finalDir: finalDir,
+        repositoryImplPath: pathToRepositoryImpl,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+      writeFile(
+        data: {},
+        path: pathToDatasource,
+        featureName: featureName,
+        writeDatasource: true,
+        finalDir: finalDir,
+        datasourceImplPath: pathToDatasource,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+      writeFile(
+        data: {},
+        path: pathToPage,
+        featureName: featureName,
+        writePage: true,
+        finalDir: finalDir,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+      writeFile(
+        data: {},
+        path: pathToCubit,
+        featureName: featureName,
+        writeCubit: true,
+        finalDir: finalDir,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+      writeFile(
+        data: {},
+        path: pathToModule,
+        featureName: featureName,
+        writeModule: true,
+        finalDir: finalDir,
+        featureNameRaw: featureNameRaw ?? '',
+      );
+    }).then(
+      (_) {
+        entityAndModelNames.clear();
+        print('✅ Feature created ✅');
+        print('✅ Tests created ✅');
+        print('⛔️Verify your test folder before send a pull request⛔️');
+      },
     );
   });
 }

@@ -308,7 +308,7 @@ import '../../domain/usecase/${featureNameInCamelCase}_usecase.dart';
 
 part '${featureNameInCamelCase}_state.dart';
 
-class ${capitalizedFeatureName}Cubit extends Cubit<${capitalizedFeatureName}State> {
+class ${capitalizedFeatureName}Bloc extends FlutterGetItBloc<${capitalizedFeatureName}State> {
   final ${capitalizedFeatureName}Usecase _${usecaseVariableName}Usecase;
 
   ${capitalizedFeatureName}Cubit({
@@ -361,6 +361,22 @@ void main() {
 
   });
 }
+''';
+  }
+
+  static String module(
+    String capitalizedFeatureName,
+  ) {
+    return '''
+import 'package:flutter/material.dart';
+import 'package:flutter_getit/flutter_getit.dart';
+import '../presenter/page/${capitalizedFeatureName}_page';
+
+class ${capitalizedFeatureName}Module extends FlutterGetItPageRoute {
+  const ${capitalizedFeatureName}Module({super.key});
+
+  @override
+  WidgetBuilder get page => (context) => const ${capitalizedFeatureName}Page();
 ''';
   }
 }
