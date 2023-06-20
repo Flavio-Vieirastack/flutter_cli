@@ -5,7 +5,7 @@ import '../helper/whrite_files.dart';
 class Constants {
   static String entity(String entityName) {
     return '''
-base class $entityName {
+class $entityName {
   
 }
 ''';
@@ -179,7 +179,7 @@ void main() {
 
   static String model(String modelName) {
     return '''
-base class $modelName {
+class $modelName {
 
 }
 ''';
@@ -308,7 +308,7 @@ import '../../domain/usecase/${featureNameInCamelCase}_usecase.dart';
 
 part '${featureNameInCamelCase}_state.dart';
 
-class ${capitalizedFeatureName}Bloc extends FlutterGetItBloc<${capitalizedFeatureName}State> {
+final class ${capitalizedFeatureName}Bloc extends FlutterGetItBloc<${capitalizedFeatureName}State> {
   final ${capitalizedFeatureName}Usecase _${usecaseVariableName}Usecase;
 
   ${capitalizedFeatureName}Bloc({
@@ -344,7 +344,7 @@ base class ${capitalizedFeatureName}Initial extends ${capitalizedFeatureName}Sta
   ) {
     return '''
 
-class ${capitalizedFeatureName}Error {
+final class ${capitalizedFeatureName}Error {
   final String message;
   ${capitalizedFeatureName}Error({required this.message});
 }
